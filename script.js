@@ -61,74 +61,87 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = ` <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+    <div class="movements__value">${mov}</div>
+  </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+displayMovements(account1.movements);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const calcDisplayBlance = function (movements) {
+  const blance = movements.reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
 
-/////////////////////////////////////////////////
+  labelBalance.textContent = `${blance} EURO`;
+};
 
-// const arr = ['a', 'b', 'c', 'd', 'e'];
+calcDisplayBlance(account1.movements);
 
-// console.log(arr.slice(2));
-// console.log(arr.slice(2, 4));
-// console.log(arr.slice(-2));
-// console.log(arr.slice(1, -2));
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLocaleLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
 
-// // Splice
-// const arr2 = ['e', 'f', 'g', 'h'];
-// console.log(arr.splice(-1));
+createUserNames(accounts);
 
-// // Reverse
-
-// console.log(arr.reverse());
-// console.log(arr);
-
-// // Concat method
-
-// const letter = arr.concat(arr2);
-// console.log(letter);
-
-// console.log([...arr, ...arr2]);
-
-// console.log(letter.join('-'));
-
-//////////////////////////////////////////////////////////////////////////////////
-
-// const arr = [12, 30, 45];
-
-// console.log(arr[0]);
-// console.log(arr.at(0));
-
-// // Geting array form last element
-// console.log(arr[arr.length - 1]);
-// console.log(arr.slice(-1)[0]);
-// console.log(arr.at(-1));
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-// for (const movement of movements) {
-//   if (movement > 0) {
-//     console.log(`you deposit ${movement}`);
-//   } else {
-//     console.log(`you withdraw ${Math.abs(movement)}`);
-//   }
-// }
-
-// Foreach loop
-
-// movements.forEach(function (movement, i, arr) {
-//   // console.log(arr);
-//   if (movement > 0) {
-//     console.log(` ${i + 1} :you deposit ${movement}`);
-//   } else {
-//     console.log(`${i + 1} :you withdraw ${Math.abs(movement)}`);
-//   }
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
 // });
+
+// const withdrawals = movements.filter(function (mov) {
+//   return mov < 0;
+// });
+
+// // Accumulator
+
+// const blace = movements.reduce(function (acc, cur, i, arr) {
+//   return acc + cur;
+// }, 0);
+
+// const calcPrintBlance = function (movements) {};
+
+/////////////////////////////////////////////////////
+
+// challange
+
+// const juliadate = [3, 5, 2, 12, 7];
+// const katedata = [4, 1, 15, 8, 3];
+
+// const cheekDogs = function (dogsJulia, dogsKate) {
+//   const juliaAges = dogsJulia.map(function (age, i) {
+//     return age >= 3
+//       ? `dog number ${i + 1} is an adult`
+//       : `dog number ${i + 1} is still a puppy`;
+//   });
+
+//   const kateAges = dogsKate.map(function (age, i) {
+//     return age >= 3
+//       ? `dog number ${i + 1} is an adult`
+//       : `dog number ${i + 1} is still a puppy`;
+//   });
+
+//   return [juliaAges, kateAges];
+// };
+
+// console.log(cheekDogs(juliadate, katedata));
+
+// const corrected = juliadate.slice(1, -1);
+// console.log(corrected);
+
+// const merge = [...corrected, ...katedata];
+// console.log(merge);
+
+////////////////////////////////////////////////////
