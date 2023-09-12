@@ -5,6 +5,9 @@
 // BANKIST APP
 
 // Data
+
+const movemets = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -97,6 +100,21 @@ const createUserNames = function (accs) {
 
 createUserNames(accounts);
 
+// Max value
+const max = movemets.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movemets[0]);
+
+console.log(max);
+
+//accumalotor -> snowball
+// const blance = movemets.reduce(function (acc, cur, i, arr) {
+//   return acc + arr;
+// }, 0);
+
+// console.log(movemets);
+
 // const deposits = movements.filter(function (mov) {
 //   return mov > 0;
 // });
@@ -145,3 +163,16 @@ createUserNames(accounts);
 // console.log(merge);
 
 ////////////////////////////////////////////////////
+
+// Challenge 2
+
+const arr1 = [5, 2, 4, 1, 15, 8, 3];
+
+const calcAverageHumanAge = function (dogage) {
+  for (let i = 0; i < dogage.length; i++) {
+    const humanAge = dogage[i] <= 2 ? 2 * dogage[i] : 16 + dogage[i] * 4;
+    console.log(humanAge);
+  }
+};
+
+calcAverageHumanAge(arr1);
