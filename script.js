@@ -88,6 +88,15 @@ const calcDisplayBlance = function (movements) {
 
 calcDisplayBlance(account1.movements);
 
+const calcDisplaySummary = function (movements) {
+  const income = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${income}`;
+};
+
+calcDisplaySummary(account1.movements);
+
 const createUserNames = function (accs) {
   accs.forEach(function (acc) {
     acc.userName = acc.owner
@@ -100,13 +109,22 @@ const createUserNames = function (accs) {
 
 createUserNames(accounts);
 
-// Max value
-const max = movemets.reduce((acc, mov) => {
-  if (acc > mov) return acc;
-  else return mov;
-}, movemets[0]);
+// const euroToUsd = 1.1;
 
-console.log(max);
+// const totalDepositUsd = movemets
+//   .filter(mov => mov > 0)
+//   .map(mov => mov * euroToUsd)
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log(totalDepositUsd);
+
+// Max value
+// const max = movemets.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movemets[0]);
+
+// console.log(max);
 
 //accumalotor -> snowball
 // const blance = movemets.reduce(function (acc, cur, i, arr) {
@@ -166,13 +184,13 @@ console.log(max);
 
 // Challenge 2
 
-const arr1 = [5, 2, 4, 1, 15, 8, 3];
+// const arr1 = [5, 2, 4, 1, 15, 8, 3];
 
-const calcAverageHumanAge = function (dogage) {
-  for (let i = 0; i < dogage.length; i++) {
-    const humanAge = dogage[i] <= 2 ? 2 * dogage[i] : 16 + dogage[i] * 4;
-    console.log(humanAge);
-  }
-};
+// const calcAverageHumanAge = function (dogage) {
+//   for (let i = 0; i < dogage.length; i++) {
+//     const humanAge = dogage[i] <= 2 ? 2 * dogage[i] : 16 + dogage[i] * 4;
+//     console.log(humanAge);
+//   }
+// };
 
-calcAverageHumanAge(arr1);
+// calcAverageHumanAge(arr1);
